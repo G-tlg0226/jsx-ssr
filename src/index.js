@@ -4,19 +4,30 @@ const path = require('path')
 const YiJsx = require('./yi-jsx')
 const md5File = require('md5-file').sync
 
+let developed = false
 
-//所有模块列表，文件绝对路径->{md5:文件md5， code:文件编译后的代码}
+
+//所有模块列表，文件绝对路径->文件编译后的代码
 let modules = {}
 
-//模板导入
-function templateRequire(filePath) {
-	//计算文件md5
-	let md5 = md5File(filePath)
+//模板导入 - 实际应用
+function templateRequireProduct(filePath) {
 	//比对modules中的文件
-	if ((modules[filePath] || {}).md5 != md5) {
-		modules[filePath] = { md5, code: makeCode(filePath) }
+	if (!modules[filePath]) {
+		modules[filePath] = makeCode(filePath)
 	}
-	return 'modules["' + filePath + '"].code'
+	return 'modules["' + filePath + '"]'
+}
+
+//模板调入 - 开发模式
+function templateRequireDevelop(filePath) {
+	modules[filePath] = makeCode(filePath)
+	return 'modules["' + filePath + '"]'
+}
+
+//模板导入 - 自动
+function templateRequire(filePath) {
+	return developed ? templateRequireDevelop(filePath) : templateRequireProduct(filePath)
 }
 
 //代码babel编译，之编译成基本代码
@@ -54,29 +65,11 @@ function makeCode(filePath) {
 	return pathParser(filePath, code)
 }
 
-//
+//导出引擎
 module.exports = {
 	__express(filePath, options, callback) {
-		//首先读取文件内容
-		// let res = babel.transformFileSync(filePath, {
-		// 	"presets": [
-		// 		["es2015", { loose: true }]
-		// 	],
-		// 	plugins: ["syntax-jsx",
-		// 		["transform-react-jsx", {
-		// 			"pragma": "YiJsx"
-		// 		}]
-		// 	]
-		// })
-		// //替换相对路径为针对当前文件路径
-		// let code = res.code.replace(/require\(['"]([\S]+?)['"]\)/gim, (_, mPath) => {
-		// 	if (mPath && mPath[0] == '.') {
-		// 		mPath = path.join(path.dirname(filePath), mPath)
-		// 	}
-		// 	return "require('" + mPath + "')"
-		// })
+		developed = (options.settings.env == 'development')
 		let code = eval(templateRequire(filePath))
-		console.log(code)
 		//渲染模板
 		let result = eval(code)(options)
 		return callback(null, result)

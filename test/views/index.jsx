@@ -9,7 +9,7 @@ module.exports = function (datas) {
 	let className = "myClass"
 	return (
 		<div>
-			<div className={className}>Hello world</div>
+			<div className={className}>Hello world11</div>
 			<input type="text" />
 			<MyComp name={test(datas.name)} />
 		</div>
