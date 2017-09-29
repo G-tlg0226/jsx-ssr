@@ -1,17 +1,37 @@
-const md5 = require('md5')
-import test from './../req-test'
-
-import MyComp from './comp.jsx'
-
-module.exports = function (datas) {
-
-
-	let className = "myClass"
+let PageBody = (props) => {
+	let { users, theme } = props
 	return (
-		<div>
-			<div className={className}>Hello world11</div>
-			<input type="text" />
-			<MyComp name={test(datas.name)} />
-		</div>
+		<body>
+			<div>
+				<div className="title">用户列表</div>
+				<table className={(theme == "dark") ? 'tbl-dark' : 'tbl-light'}>
+					<tr>
+						<th>ID</th>
+						<th>姓名</th>
+						<th>年龄</th>
+						<th>性别</th>
+					</tr>
+					{users.map(user => <tr>
+						<td>{user.id}</td>
+						<td>{user.name}</td>
+						<td>{user.age}</td>
+						<td>{user.gender || '未知'}</td>
+					</tr>)}
+				</table>
+			</div>
+		</body>
+	)
+}
+
+
+module.exports = function (data) {
+	return "<!doctype html>" + (
+		<html>
+			<head>
+				<meta charset="UTF-8" />
+				<title>用户列表</title>
+			</head>
+			<PageBody users={data.users} theme="dark" />
+		</html>
 	)
 }
