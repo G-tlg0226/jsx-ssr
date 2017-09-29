@@ -1,15 +1,17 @@
 const md5 = require('md5')
+import test from './../req-test'
+
+import MyComp from './comp.jsx'
+
+module.exports = function (datas) {
 
 
-let MyComp = (props) => <div>My Name is {props.name}</div>
-
-module.exports = function main(YiJsx, datas) {
 	let className = "myClass"
 	return (
 		<div>
 			<div className={className}>Hello world</div>
 			<input type="text" />
-			<MyComp name={datas.name}/>
+			<MyComp name={test(datas.name)} />
 		</div>
 	)
 }

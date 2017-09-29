@@ -1,0 +1,1 @@
+module.exports.MyComp = (props) => <div>My Name is {props.name}</div>
