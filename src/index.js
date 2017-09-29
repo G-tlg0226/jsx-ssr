@@ -33,13 +33,13 @@ function templateRequire(filePath) {
 //代码babel编译，之编译成基本代码
 function codeParser(filePath) {
 	let res = babel.transformFileSync(filePath, {
-		"presets": [
-			["es2015", { loose: true }]
+		babelrc: false,
+		presets: [
+			[require("babel-preset-es2015")]
 		],
-		plugins: ["syntax-jsx",
-			["transform-react-jsx", {
-				"pragma": "YiJsx"
-			}]
+		plugins: [
+			require("babel-plugin-syntax-jsx"),
+			[require("babel-plugin-transform-react-jsx"), { "pragma": "YiJsx" }]
 		]
 	})
 	return res.code
