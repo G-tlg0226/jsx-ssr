@@ -26,6 +26,7 @@ module.exports = {
 		// 	}
 		// 	return "require('" + mPath + "')"
 		// })
+		console.log(code)
 		//渲染模板
 		let result = eval(res.code)(YiJsx, options)
 		return callback(null, result)
