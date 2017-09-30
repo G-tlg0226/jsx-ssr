@@ -1,5 +1,9 @@
 ## YIZHI-JSX express 模板引擎
 
+## 新动态
+### 1.2.1 (2017-09-30)
+* 增加style支持传递Object类型的数据，如：&lt;div style={{fontSize:30, color:'red'}}&gt;Hello&lt;/div&gt;，当然，也可以写字符串
+
 ## 了解一下
 
 yizhi-jsx 模板引擎使用jsx语法进行express模板的渲染，

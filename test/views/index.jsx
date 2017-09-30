@@ -3,7 +3,7 @@ let PageBody = (props) => {
 	return (
 		<body>
 			<div>
-				<div className="title">用户列表</div>
+				<div className="title" style={{ fontSize: 30 }}>用户列表</div>
 				<table className={(theme == "dark") ? 'tbl-dark' : 'tbl-light'}>
 					<tr>
 						<th>ID</th>
