@@ -28,6 +28,7 @@ module.exports = function (data) {
 	return "<!doctype html>" + (
 		<html>
 			<head>
+				<script src="xxxxx"></script>
 				<meta charset="UTF-8" />
 				<title>用户列表</title>
 			</head>

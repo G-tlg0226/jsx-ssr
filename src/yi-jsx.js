@@ -11,6 +11,9 @@ const pxDict = [
 	"word-spacing"
 ].map(str => str.replace(/\-([a-z])/g, (_, ch) => ch.toUpperCase()))
 
+//可以不需要结束标签的HTML标签
+const noEndTags = ['link', 'meta', 'br', 'hr', 'img', 'input', 'area', 'base', 'col', 'command', 'embed', 'keygen', 'param', 'source', 'track', 'wbr']
+
 
 //转换样式为字符串
 const parseStyle = style => Object.keys(style).map(key => {
@@ -30,7 +33,8 @@ module.exports = function YiJsx(name, props, ...children) {
 		}).join(' ')
 		//生成标签
 		let str = '<' + name + (propsStr ? (' ' + propsStr) : '')
-		if (children.length > 0) {
+		//只有不在noEndTags中的标签才会添加结束标签
+		if (noEndTags.indexOf(name) < 0) {
 			str += '>' + parseChildren(children) + '</' + name + '>'
 		} else {
 			str += ' />'

@@ -3,6 +3,8 @@
 ## 新动态
 ### 1.2.1 (2017-09-30)
 * 增加style支持传递Object类型的数据，如：&lt;div style={{fontSize:30, color:'red'}}&gt;Hello&lt;/div&gt;，当然，也可以写字符串
+### 1.2.2 (2017-09-30)
+* 修改了HTML中结束标签的bug
 
 ## 了解一下
 
