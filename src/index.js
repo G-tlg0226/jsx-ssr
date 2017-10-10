@@ -72,7 +72,6 @@ module.exports = function (env = 'development') {
 
 	//返回一个函数供express调用
 	return function (filePath, options, callback) {
-		console.log(makeCode(filePath))
 		//对路径进行md5加密
 		let md5Name = md5(filePath)
 		//开发模式下每次都需要编译，产品模式下只编译一次
