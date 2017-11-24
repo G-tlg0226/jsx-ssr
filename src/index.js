@@ -1,3 +1,5 @@
+// import { program } from '../../../../Library/Caches/typescript/2.6/node_modules/@types/babel-types';
+
 /**
  * 这个文件提供了模板引擎必须的东西，包括：
  * 1、模板的编译
@@ -22,10 +24,11 @@ const YiJsx = require('./yi-jsx')
 
 //导出引擎
 module.exports = function (env = 'development') {
+
 	//检测是否在开发模式下
 	const development = (env == 'development')
 	//存储一下执行好了的代码（开发模式下无效）
-	const programs = {}		//文件路径md5=>jsx函数
+	const programs = {}		//文件路径md5=>jsx函数 
 
 	//模板导入
 	const templateRequire = (filePath, md5Name) => programs[md5Name] = eval(makeCode(filePath))
@@ -44,7 +47,6 @@ module.exports = function (env = 'development') {
 			[require("babel-plugin-transform-react-jsx"), { "pragma": "YiJsx" }]	//将jsx进行转换处理
 		]
 	}).code
-
 	//require路径处理
 	const pathParser = (filePath, code) => code.replace(/require\(['"]([\S]+?)['"]\)/gim, (_, mPath) => {
 		//需要检查是不是相对路径，相对路径需要进行特殊处理
@@ -70,8 +72,9 @@ module.exports = function (env = 'development') {
 	//编译一个文件并完成所有依赖
 	const makeCode = filePath => pathParser(filePath, codeParser(filePath))
 
-	//返回一个函数供express调用
+	//返回一	个函数供express调用
 	return function (filePath, options, callback) {
+		//  
 		//对路径进行md5加密
 		let md5Name = md5(filePath)
 		//开发模式下每次都需要编译，产品模式下只编译一次
