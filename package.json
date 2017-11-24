@@ -1,6 +1,6 @@
 {
-  "name": "yizhi-jsx",
-  "version": "1.2.4",
+  "name": "jsx-ssr",
+  "version": "1.0.0",
   "description": "",
   "main": "src/index.js",
   "scripts": {
