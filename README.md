@@ -1,10 +1,4 @@
-## YIZHI-JSX express 模板引擎
-
-## 新动态
-### 1.2.1 (2017-09-30)
-* 增加style支持传递Object类型的数据，如：&lt;div style={{fontSize:30, color:'red'}}&gt;Hello&lt;/div&gt;，当然，也可以写字符串
-### 1.2.2 (2017-09-30)
-* 修改了HTML中结束标签的bug
+## JSX-SSR 模板引擎 (基于YIZHI-JSX )
 
 ## 了解一下
 
@@ -131,10 +125,3 @@ export {
 module.exports.MyComp = MyComp
 exports.MyComp = MyComp
 ```
-
-## 其他
-
-如果有其他问题，可以伊妹儿我[lujiankang@outlook.com](mailto:lujiankang@outlook.com)
-
-另外，本来想用英文写的，但是英语水平太菜了，写出来别人看不懂，
-希望有人帮忙翻一下文档。 ('_`)!!
